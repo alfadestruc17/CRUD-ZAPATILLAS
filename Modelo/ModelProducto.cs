@@ -1,6 +1,7 @@
 ﻿using MySqlConnector;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,24 @@ namespace Modelo
             catch (Exception)
             {
                 return retorno;
+            }
+        }
+        public static DataTable cargarMarcas(string id) 
+        {
+            DataTable data;
+            try
+            {
+                string query = "SELECT * FROM Marcas WHERE IdMarca = ?param1";
+                MySqlCommand cmd = new MySqlCommand(string.Format(query), ModelConnection.getConnection());
+                cmd.Parameters.Add(new MySqlParameter("?param1", id));
+                MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+                data = new DataTable();
+                adp.Fill(data);
+                return data;
+            }
+            catch (Exception)
+            {
+                return data = null;
             }
         }
     }
