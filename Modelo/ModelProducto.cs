@@ -25,7 +25,7 @@ namespace Modelo
                 return retorno;
             }
         }
-        public static DataTable cargarMarcas(string id) 
+        public static DataTable InsMarcas (string id) 
         {
             DataTable data;
             try
@@ -33,6 +33,23 @@ namespace Modelo
                 string query = "SELECT * FROM Marcas WHERE IdMarca = ?param1";
                 MySqlCommand cmd = new MySqlCommand(string.Format(query), ModelConnection.getConnection());
                 cmd.Parameters.Add(new MySqlParameter("?param1", id));
+                MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+                data = new DataTable();
+                adp.Fill(data);
+                return data;
+            }
+            catch (Exception)
+            {
+                return data = null;
+            }
+        }
+        public static DataTable obtenerMarcas()
+        {
+            DataTable data;
+            try
+            {
+                string query = "SELECT * FROM Marcas";
+                MySqlCommand cmd = new MySqlCommand(string.Format(query), ModelConnection.getConnection());
                 MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
                 data = new DataTable();
                 adp.Fill(data);
