@@ -8,7 +8,7 @@ using MySql.Data.MySqlClient;
 
 
 namespace Controlador
-{
+{ 
     public class ControllerConnection
     {
         public static MySqlConnection getControllerConnection()
