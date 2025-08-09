@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Mysqlx.Cursor;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -7,24 +8,34 @@ using System.Threading.Tasks;
 
 namespace Controlador
 {
-    internal class ControllerProductos
+    public class ControllerProductos
     {
-        public static int ID { get; set; }
-        public static string Nombre { get; set; }
-        public static int id_marca { get; set; }
-        public static int id_talla { get; set; }
+        public static int IdProducto { get; set; }
+        public static string CodigoProducto { get; set; }
+        public static int Existencias { get; set; }
+        public static string Producto { get; set; }
+        public static decimal Precio { get; set; }
+        public static string Descripcion { get; set; }
+        public static int IdMarca { get; set; }
+        public static string fecha { get; set; }
 
-        ControllerProductos(int pID, string pNombre, int pid_marca, int pid_talla)
+
+        ControllerProductos(string pCodigoProducto, int pExistencias, string pProducto,
+               decimal pPrecio, string pDescripcion, int pIdMarca, string pfecha)
         {
-            ID = pID;
-            Nombre = pNombre;
-            id_marca = pid_marca;
-            id_talla = pid_talla;
+            CodigoProducto = pCodigoProducto;
+            Existencias = pExistencias;
+            Producto = pProducto;
+            Precio = pPrecio;
+            Descripcion = pDescripcion;
+            IdMarca = pIdMarca;
+            fecha = pfecha;
         }
 
         public bool Enviar_producto()
         {
-            return Modelo.ModelProducto.RegistrarProducto(ID, Nombre, id_marca, id_talla);
+            return Modelo.ModelProducto.RegistrarProducto(CodigoProducto, Existencias, Producto,
+               Precio, Descripcion, IdMarca, fecha);
         }
         public static DataTable CargarMarcas (string id)
         {
@@ -32,7 +43,7 @@ namespace Controlador
         }
         public static DataTable obtenerMarcas()
         {
-            return Modelo.ModelProducto.obtenerMarcas
+            return Modelo.ModelProducto.obtenerMarcas();
         }
     }
 }
