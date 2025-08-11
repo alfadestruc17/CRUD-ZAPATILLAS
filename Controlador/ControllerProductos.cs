@@ -45,5 +45,10 @@ namespace Controlador
         {
             return Modelo.ModelProducto.obtenerMarcas();
         }
+
+        public static DataTable CargarMarcas()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
